@@ -1,0 +1,64 @@
+# ============================================================
+#  SaaS（UE 5.8 / Aura GAS 学习项目）版本控制范围
+#
+#  原则：只跟踪「自己写的代码 + 自己做的内容」，商店 / 教程资源一律不进仓库。
+#  结果：仓库首次提交约 6 MB，每次日常提交几百 KB —— 推送到 GitHub 秒级完成。
+#
+#  注意：本文件里 # 只能整行做注释，不能写在规则后面，否则规则会失效。
+# ============================================================
+
+# ---------- UE 编译 / 运行生成物：可随时重新生成，不进仓库 ----------
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# ---------- IDE / 编辑器配置 ----------
+.idea/
+.vs/
+.vscode/
+*.VC.db
+*.opensdf
+*.sdf
+*.suo
+*.sln
+*.xcodeproj
+
+# ---------- 第三方插件 ----------
+# UnrealAgentLink = AI/MCP 工具链插件（约 114 MB，可重新安装）
+Plugins/UnrealAgentLink/
+
+# ---------- Content：先整体忽略，再逐个放行自己做的内容 ----------
+# 这样以后从 Fab / 商店导入再大的资源包，也不会被误提交
+Content/*
+# 自己的蓝图 / UI / 输入 / 关卡（约 1 MB）—— 这是这个项目最核心的资产
+!Content/Aura/
+!Content/Code/
+!Content/Cursor/
+!Content/Starfield/
+!Content/TopDown/
+
+# 自行搭建的测试关卡 TestMap（约 30 MB）默认不纳入；想纳入就取消下面 10 行注释
+# !Content/Maps/
+# Content/Maps/*
+# !Content/Maps/TestMap.umap
+# !Content/Maps/TestMap_HLOD0_Instancing.uasset
+# !Content/__ExternalActors__/
+# Content/__ExternalActors__/*
+# !Content/__ExternalActors__/Maps/
+# Content/__ExternalActors__/Maps/*
+# !Content/__ExternalActors__/Maps/TestMap/
+
+# 以下目录体积都很大且可从商店 / 教程重新下载，故不纳入：
+#   Content/Fab            6.3 GB
+#   Content/Maps           3.2 GB（含 Map_Changan.umap 155 MB，超 GitHub 单文件 100 MiB 上限，推不上去）
+#   Content/AuraAssets     781 MB（教程素材包）
+#   Content/StarterContent 194 MB / Content/Characters 125 MB / Content/__ExternalActors__ 40 MB
+
+# ---------- AI 工具配置与记忆（含本机绝对路径，默认不进仓库） ----------
+.codebuddy/*
+.codebuddy/tools/.ue_mcp_session
+# 想连「每天的对话记忆」一起备份（等于每天自动多一份记录），取消下面两行注释
+# !.codebuddy/memory/
+# !.codebuddy/tools/
