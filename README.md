@@ -1,6 +1,12 @@
-# SaaS
+# SaaS（UE 5.8 学习项目）
 
-基于 **Unreal Engine 5.8** 的 GAS（Gameplay Ability System）学习项目：照 Aura 系列教程做的第三人称角色 + 属性 / 技能系统 + HUD（血球 / 蓝球），另附早期 C++ 练习代码（Actor 生命周期、Soft Reference、Smart Pointer、Timeline、接口、蓝图函数库等）。
+> **名字说明**：`SaaS` 是当初建工程时随手起的，**没有任何具体含义**，纯属历史遗留。这是一个**个人学习 / 练习项目**，不是产品。
+
+用 Unreal Engine 5.8 搭的一块练习田，目前有三部分内容：
+
+1. **GAS 主线** —— 照 Aura 系列教程做的第三人称角色 + 属性 / 技能系统 + HUD（血球 / 蓝球），对应 `Content/Aura` 与 `Source/SaaS/{AbilitySystem, Character, Player, UI, ...}`；
+2. **长安大学建模地图** —— `Content/Maps/Changan`（约 950 个资产：静态网格 689 MB + 贴图 14 MB + 材质 0.4 MB）与关卡 `Content/Maps/Map_Changan.umap`（155 MB）；
+3. **早期 C++ 练习** —— Actor 生命周期、Soft / Weak Reference、Smart Pointer、Timeline、接口、蓝图函数库等，对应 `Source/SaaS/My*.cpp` 与 `Content/Code`。
 
 ---
 
@@ -45,12 +51,12 @@
 | 企鹅 / 机器猫 / 钢铁侠 | `Content/Fab/企鹅`、`Content/Fab/机器猫`、`Content/Fab/钢铁侠` | 97 / 57 / 48 MB | Fab（待补链接） |
 | Wooden_Door / RPGEnvironmentVFX | `Content/Fab/Wooden_Door`、`Content/Fab/RPGEnvironmentVFX` | 62 / 52 MB | Fab（待补链接） |
 | RealCitySF | `Content/Maps/RealCitySF/` | 1.7 GB | 商店（待补链接） |
-| Changan（长安场景） | `Content/Maps/Changan/`、`Content/Maps/Map_Changan.umap` | 703 MB + 155 MB | 商店（待补链接） |
+| 长安大学建模地图（`MESH` 689 MB / `Textures` 14 MB / `Materials` 0.4 MB，共 950 个资产） | `Content/Maps/Changan/` + `Content/Maps/Map_Changan.umap` | 703 MB + 155 MB | 待补（若为自制，则需单独备份） |
 | StonePineForest | `Content/Maps/StonePineForest/` | 676 MB | 商店（待补链接） |
 | StarterContent / Characters | `Content/StarterContent/`、`Content/Characters/` | 194 / 125 MB | 引擎模板 / 教程 |
 | UnrealAgentLink（AI/MCP 调试插件） | `Plugins/UnrealAgentLink/` | 114 MB | 插件发布页（待补链接） |
 
-> `Map_Changan.umap` 单文件 155 MB，**超过 GitHub 单文件 100 MiB 的硬上限**，永远不会出现在仓库里 —— 如需保留只能靠本地快照（移动硬盘 / 网盘）。
+> ⚠️ **长安大学建模地图是这里最需要单独保管的一份东西**：`Map_Changan.umap` 单文件 155 MB，**超过 GitHub 单文件 100 MiB 的硬上限**，永远不会出现在仓库里；`Changan/MESH` 又有 689 MB。**如果这张图是你自己建模 / 采集的（不可再生），一定要用移动硬盘或网盘单独留快照** —— 这个仓库救不了它。反过来，若是从商店 / 他人处下载的，按原链接重新获取即可。
 
 ## 目录结构（仓库实际跟踪的内容）
 
