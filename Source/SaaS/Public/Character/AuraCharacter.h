@@ -6,6 +6,10 @@
 #include "AuraCharacterBase.h"
 #include "AuraCharacter.generated.h"
 
+class UAuraUserWidget;
+
+
+
 UCLASS()
 class SAAS_API AAuraCharacter : public AAuraCharacterBase
 {
@@ -18,6 +22,7 @@ public:
 	virtual void PossessedBy(AController* NewController) override;
 	
 	virtual void OnRep_PlayerState() override;
+	
 
 protected:
 
@@ -27,4 +32,9 @@ protected:
 	
 private:
 	void InitAbilityActorInfo();
+	
+
+	
+	
+	
 };

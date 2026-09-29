@@ -75,16 +75,16 @@ void AAuraPlayerController::BeginPlay()
 	// 所以要先 GetLocalPlayer() 拿到当前玩家，再从他身上取子系统。
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
 	
-	// 断言：子系统必须存在，为 false 时立即停止执行（相当于"这里不该为空"的强保证）。
-	// 注意（官方原文）：check 族系"默认不会在发布版本中运行"——
-	// 默认只在 Debug / Development 构建生效，Shipping 中会被移除；
-	// 需要时可用 USE_CHECKS_IN_SHIPPING=1 在 Test / Shipping 中开启（发布应设回 0）。
-	check(Subsystem);
+	
+	if(Subsystem)
+	{
+		Subsystem->AddMappingContext(AuraInputMappingContext, 0);
+	}
 	
 	// 把输入映射上下文注册进子系统 —— 这之后 IMC 里配置的按键才真正生效。
 	// 第二个参数是优先级（Priority），决定多个映射上下文共存时的叠加顺序；
 	// 本项目目前只有一个上下文，填 0 即可。
-	Subsystem->AddMappingContext(AuraInputMappingContext, 0);
+	
 	
 	// 显示鼠标光标（点地移动类 RPG 需要看得见光标）
 	bShowMouseCursor = true;

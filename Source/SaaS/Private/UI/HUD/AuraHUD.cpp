@@ -5,13 +5,39 @@
 
 
 #include "UI/Widget/AuraUserWidget.h"
+#include "UI/WidgetController/OverlayWidgetController.h"
 
-void AAuraHUD::BeginPlay()
+UOverlayWidgetController* AAuraHUD::GetOverlayController(const FWidgetControllerParams& WCParams)
 {
-	Super::BeginPlay();
+	if ( OverlayWidgetController == nullptr )
+	{
+		OverlayWidgetController = NewObject<UOverlayWidgetController>(this, OverlayWidgetControllerClass);
+		OverlayWidgetController->SetWidgetControllerParams(WCParams);
+		
+	}
 	
-	UUserWidget* Widget = CreateWidget<UUserWidget>(GetWorld(), OverlapyidgetClass);
+	return OverlayWidgetController;
+}
+
+void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC,
+	UAttributeSet* AS)
+{
+	
+	checkf(OverlayWidgetClass, TEXT("Overlay Widget Class 未初始化, 在BP_AuraHUD中填写"));
+	checkf(OverlayWidgetControllerClass, TEXT("Overlay Widget Controller Class 未初始化, 在BP_AuraHUD中填写"));
+	
+	UUserWidget* Widget = CreateWidget<UUserWidget>(GetWorld(), OverlayWidgetClass);
+	OverlayWidget = Cast<UAuraUserWidget>(Widget);
+	
+	const  FWidgetControllerParams WidgetControllerParams{PC, PS, ASC, AS};
+	
+	UOverlayWidgetController* WidgetController = GetOverlayController(WidgetControllerParams);
+	
+	OverlayWidget->SetWidgetController(WidgetController);
+	
 	
 	Widget->AddToViewport();
+	
+	
 	
 }

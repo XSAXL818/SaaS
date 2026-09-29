@@ -6,6 +6,10 @@
 #include "GameFramework/HUD.h"
 #include "AuraHUD.generated.h"
 
+class UAttributeSet;
+class UAbilitySystemComponent;
+struct FWidgetControllerParams;
+class UOverlayWidgetController;
 class UAuraUserWidget;
 /**
  * 
@@ -20,13 +24,26 @@ public:
 	UPROPERTY()
 	TObjectPtr<UAuraUserWidget> OverlayWidget;
 	
-protected:
-	virtual void BeginPlay() override;
+	UOverlayWidgetController* GetOverlayController(const FWidgetControllerParams& WCParams);
 	
+	
+	// 初始化时需要传入的参数需要确保有效，所以不在BeginPlay中初始化，
+	// 而是在AuraCharacter中初始化，因为AuraCharacter中可以确保所需参数都被初始化
+	UFUNCTION(BlueprintCallable)
+	void InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS);
+	
+protected:
+
 	
 	
 private:
 	
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UAuraUserWidget> OverlapyidgetClass;
+	TSubclassOf<UAuraUserWidget> OverlayWidgetClass;
+
+	UPROPERTY()
+	TObjectPtr<UOverlayWidgetController> OverlayWidgetController;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UOverlayWidgetController> OverlayWidgetControllerClass;
 };

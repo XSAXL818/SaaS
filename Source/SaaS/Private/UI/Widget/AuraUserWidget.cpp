@@ -8,6 +8,6 @@ void UAuraUserWidget::SetWidgetController(UObject* InWidgetController)
 	
 	WidgetController = InWidgetController;
 	
-	WidgetCpmtrollerSet();
+	WidgetControllerSet();
 	
 }
