@@ -53,6 +53,7 @@ public:
 	
 	virtual void BroadcastInitialValue();
 	
+	virtual void BindCallbacksToDependencies();
 	
 protected:
 	
