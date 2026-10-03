@@ -29,7 +29,7 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 	.AddUObject(this, &UOverlayWidgetController::HealthChanged);
 	
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetMaxHealthAttribute())
-	.AddUObject(this, &UOverlayWidgetController::HealthChanged);
+	.AddUObject(this, &UOverlayWidgetController::MaxHealthChanged);
 	
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetManaAttribute())
 	.AddUObject(this, &UOverlayWidgetController::ManaChanged);
