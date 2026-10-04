@@ -27,9 +27,13 @@ protected:
 	void ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> GameplayEffectClass);
 	
 	
-	// 用户蓝图中输入
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Effect")
+	// 用户蓝图中输入,即使效果
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Allpied Effects")
 	TSubclassOf<UGameplayEffect> InstantGameplayEffect;
+	
+	// 持续效果
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Allpied Effects")
+	TSubclassOf<UGameplayEffect> DurationGameplayEffect;
 	
 
 private:
