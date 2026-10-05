@@ -2,11 +2,18 @@
 
 > **名字说明**：`SaaS` 是当初建工程时随手起的，**没有任何具体含义**，纯属历史遗留。这是一个**个人学习 / 练习项目**，不是产品。
 
-用 Unreal Engine 5.8 搭的一块练习田，目前有三部分内容：
+用 Unreal Engine 5.8 搭的一块练习田，内容分四部分：
 
-1. **GAS 主线** —— 照 Aura 系列教程做的第三人称角色 + 属性 / 技能系统 + HUD（血球 / 蓝球），对应 `Content/Aura` 与 `Source/SaaS/{AbilitySystem, Character, Player, UI, ...}`；
+1. **GAS 主线** —— 照 Aura 系列教程学习 GAS（属性集 → 效果 Actor → UI WidgetController），对应 `Content/Aura` 与 `Source/SaaS/{AbilitySystem, Character, Player, UI, ...}`。**具体进度与踩坑见 [DEVLOG.md](DEVLOG.md)**；
 2. **长安大学建模地图** —— `Content/Maps/Changan`（约 950 个资产：静态网格 689 MB + 贴图 14 MB + 材质 0.4 MB）与关卡 `Content/Maps/Map_Changan.umap`（155 MB）；
-3. **早期 C++ 练习** —— Actor 生命周期、Soft / Weak Reference、Smart Pointer、Timeline、接口、蓝图函数库等，对应 `Source/SaaS/My*.cpp` 与 `Content/Code`。
+3. **早期 C++ 练习** —— Actor 生命周期、Soft / Weak Reference、Smart Pointer、Timeline、接口、蓝图函数库等，对应 `Source/SaaS/My*.cpp` 与 `Content/Code`；
+4. **FPS 学习线** —— 自建的纯蓝图 FPS 玩家与 GameMode（`Content/FPS/Code/Player`）与测试关卡 `Content/FPS/Maps/Default.umap`。
+
+## 当前状态
+
+- 性质：**个人学习项目**（不是产品）；学习内容见上方列表，**进度与踩坑见 [DEVLOG.md](DEVLOG.md)**
+- 进度 / 踩坑记录：见 [DEVLOG.md](DEVLOG.md)；提交历史本身就是进度快照（`git log --oneline`）
+- 本 README 的更新原则：**只在结构 / 配置 / 流程变化时更新**；进度一律写进 DEVLOG
 
 ---
 
@@ -16,8 +23,8 @@
 
 | | 内容 | 体积 |
 |---|---|---|
-| ✅ 在仓库里 | `Source/`（C++）、`Config/`、`SaaS.uproject`、自制蓝图 `Content/Aura`、`Content/Code`、`Content/Cursor`、`Content/Starfield`、`Content/TopDown` | 约 **6.4 MB** |
-| ❌ 不在仓库里 | `Content/Fab`、`Content/AuraAssets`、`Content/Maps`、`Content/Characters`、`Content/StarterContent`、`Plugins/UnrealAgentLink` | 约 **17 GB** |
+| ✅ 在仓库里 | `Source/`、`Config/`、`SaaS.uproject`、`DEVLOG.md`、`README.md`，以及 `Content/` 下**自制目录**（放行规则见 `.gitignore` 白名单） | 约 **6.5 MB** |
+| ❌ 不在仓库里 | `Content/` 下的**商店 / 教程素材**（`Fab`、`AuraAssets`、`Maps`、`Characters`、`StarterContent`、`FPSAssets` …）与 `Plugins/UnrealAgentLink` | 约 **17 GB** |
 
 **引用不会断**：蓝图与 C++ 里对外部资产的引用只是**路径字符串**（`FSoftObjectPath`、`LoadObject` / `FObjectFinder`）。把资源按下面的清单装回**原来的路径**，所有引用会自动恢复，不需要手工重连。
 
@@ -82,7 +89,7 @@ Content/
   Cursor/ Starfield/ TopDown/ # 光标、星空材质、TopDown 模板残留
 ```
 
-## 代码导览（GAS 主线）
+## 代码导览（GAS 主线，截至 2026-10）
 
 - `AAuraCharacterBase` → `AAuraCharacter`：玩家角色。`PossessedBy` / `OnRep_PlayerState` 时调用 `InitAbilityActorInfo()`，从 PlayerState 取 ASC 与 AttributeSet 赋给自身成员。
 - `AAuraPlayerState`：持有 `UAuraAbilitySystemComponent` + `UAuraAttributeSet`（**玩家的 ASC 挂在 PlayerState 上，不在角色 Pawn 上**）。
@@ -105,11 +112,11 @@ Content/
 
 ```powershell
 git add -A
-git commit -m "Day 6: 修好 XXX"
+git commit -m "Aura：xxx"
 git push
 ```
 
-- 同时在 `DEVLOG.md` 末尾追加一条：做了什么 / 遇到的问题 / 明天做什么。
+- 同时在 `DEVLOG.md` 末尾追加一条（字段：今天做了什么 / 遇到的问题·怎么解决的 / 学到的知识点 / 明天要做）。
 - **新增自制内容目录**（例如 `Content/MyStuff`）时，要在 `.gitignore` 里加一行 `!Content/MyStuff/`，否则不会被跟踪。
 
 ## 常见问题
