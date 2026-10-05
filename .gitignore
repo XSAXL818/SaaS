@@ -38,6 +38,7 @@ Content/*
 !Content/Cursor/
 !Content/Starfield/
 !Content/TopDown/
+!Content/FPS/
 
 # 自行搭建的测试关卡 TestMap（约 30 MB）默认不纳入；想纳入就取消下面 10 行注释
 # !Content/Maps/
