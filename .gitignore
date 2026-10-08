@@ -35,9 +35,6 @@ Content/*
 # 自己的蓝图 / UI / 输入 / 关卡（约 1 MB）—— 这是这个项目最核心的资产
 !Content/Aura/
 !Content/Code/
-!Content/Cursor/
-!Content/Starfield/
-!Content/TopDown/
 !Content/FPS/
 
 # 自行搭建的测试关卡 TestMap（约 30 MB）默认不纳入；想纳入就取消下面 10 行注释
@@ -59,6 +56,7 @@ Content/*
 
 # ---------- AI 工具配置与记忆（含本机绝对路径，默认不进仓库） ----------
 .codebuddy/*
+.claude
 .codebuddy/tools/.ue_mcp_session
 # 想连「每天的对话记忆」一起备份（等于每天自动多一份记录），取消下面两行注释
 # !.codebuddy/memory/
