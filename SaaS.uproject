@@ -42,6 +42,10 @@
 		{
 			"Name": "UnrealAgentLink",
 			"Enabled": true
+		},
+		{
+			"Name": "GameplayStateTree",
+			"Enabled": true
 		}
 	]
 }
