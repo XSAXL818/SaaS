@@ -24,8 +24,7 @@ public:
 	AAuraPlayerController();
 	
 	virtual void PlayerTick(float DeltaTime) override;
-	
-	
+
 	
 protected:
 	
@@ -40,13 +39,18 @@ private:
 	TObjectPtr<UInputAction> MoveAction;
 	UPROPERTY(EditAnywhere, Category="Input")
 	TObjectPtr<UInputAction> LookAction;
+	UPROPERTY(EditAnywhere, Category="Input")
+	TObjectPtr<UInputAction> DebugAction1;
 	
 	void Move(const FInputActionValue& Value);
 	
 	void Look(const FInputActionValue& Value);
 	
 	void CursorTrace();
-	
+
+	/** F1 切换 GAS 调试显示（等价于控制台输入 showdebug AbilitySystem） */
+	void ToggleAbilitySystemDebug();
+
 	IEnemyInterface* LastActor;
 	IEnemyInterface *CurrentActor;
 };

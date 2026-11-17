@@ -1,27 +1,19 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "{A214180E-4147-DD96-CAE2-2FA3FFB7CE2C}",
+	"EngineAssociation": "5.8",
 	"Category": "",
 	"Description": "",
 	"Modules": [
 		{
 			"Name": "SaaS",
 			"Type": "Runtime",
-			"LoadingPhase": "Default",
-			"AdditionalDependencies": [
-				"Engine",
-				"UMG",
-				"CoreUObject"
-			]
+			"LoadingPhase": "Default"
 		}
 	],
 	"Plugins": [
 		{
 			"Name": "ModelingToolsEditorMode",
-			"Enabled": true,
-			"TargetAllowList": [
-				"Editor"
-			]
+			"Enabled": true
 		},
 		{
 			"Name": "AIAssistant",
@@ -41,10 +33,14 @@
 		},
 		{
 			"Name": "UnrealAgentLink",
-			"Enabled": true
+			"Enabled": false
 		},
 		{
 			"Name": "GameplayStateTree",
+			"Enabled": true
+		},
+		{
+			"Name": "GameplayBehaviors",
 			"Enabled": true
 		}
 	]

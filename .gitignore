@@ -36,6 +36,7 @@ Content/*
 !Content/Aura/
 !Content/Code/
 !Content/FPS/
+!Content/DefendHome/
 
 # 自行搭建的测试关卡 TestMap（约 30 MB）默认不纳入；想纳入就取消下面 10 行注释
 # !Content/Maps/
@@ -61,3 +62,9 @@ Content/*
 # 想连「每天的对话记忆」一起备份（等于每天自动多一份记录），取消下面两行注释
 # !.codebuddy/memory/
 # !.codebuddy/tools/
+
+# ---------- Rider / ReSharper 个人设置（含本机绝对路径，不进仓库） ----------
+*.DotSettings.user
+
+# ---------- Codex 配置 ----------
+.codex/

@@ -10,6 +10,45 @@
 #include "AuraAttributeSet.generated.h"
 
 
+USTRUCT()
+struct FEffectProperties
+{
+	GENERATED_BODY()
+	
+	FEffectProperties(){};
+	
+	FGameplayEffectContextHandle EffectContextHandle;
+	
+	UPROPERTY()
+	UAbilitySystemComponent* SourceASC = nullptr;
+	
+	UPROPERTY()
+	AActor* SourceAvatarActor = nullptr;
+	
+	UPROPERTY()
+	AController* SourceController = nullptr;
+	
+	UPROPERTY()
+	ACharacter* SourceCharacter = nullptr;
+	
+	UPROPERTY()
+	UAbilitySystemComponent* TargetASC = nullptr;
+	
+	UPROPERTY()
+	AActor* TargetAvatarActor = nullptr;
+	
+	UPROPERTY()
+	AController* TargetController = nullptr;
+	
+	UPROPERTY()
+	ACharacter* TargetCharacter = nullptr;
+	
+	
+	
+	
+};
+
+
 /**
  * 
  */
@@ -22,8 +61,14 @@ public:
 	UAuraAttributeSet();
 	
 	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const override;
-
 	
+	// 属性变化之前进行截断限制，但还是会做一些操作，并不是限制数值的保底处理手段
+	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
+	
+	virtual void PreAttributeBaseChange(const FGameplayAttribute& Attribute, float& NewValue) const override;
+	
+	
+	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
 	
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Health, Category="Vital Attribute")
 	FGameplayAttributeData Health;
@@ -53,4 +98,11 @@ public:
 	
 	UFUNCTION()
 	void OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) const;
+	
+	
+	
+private:
+	
+	void SetEffectProperties(const struct FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const;
+	
 };

@@ -6,6 +6,9 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Character/Enemy/AuraEnemy.h"
+#include "GameFramework/HUD.h"
+#include "InputCoreTypes.h"
+#include "InputKeyEventArgs.h"
 #include "Interaction/EnemyInterface.h"
 
 AAuraPlayerController::AAuraPlayerController()
@@ -99,9 +102,28 @@ void AAuraPlayerController::BeginPlay()
 	InputModeData.SetHideCursorDuringCapture(false);
 	// 把上面配置好的输入模式应用到本 PlayerController
 	SetInputMode(InputModeData);
-	
-	
-	
+}
+
+void AAuraPlayerController::ToggleAbilitySystemDebug()
+{
+	AHUD* HUD = GetHUD();
+	if (!HUD) return;
+
+	// GAS 调试显示的类别名，与控制台命令 showdebug AbilitySystem 一致
+	const FName DebugType(TEXT("AbilitySystem"));
+
+	if (HUD->ShouldDisplayDebug(DebugType))
+	{
+		// 已开启：移除该类别；若没有其它类别在显示，就一并关掉整个 showdebug 绘制，
+		// 否则屏幕上会残留空白的调试框。
+		HUD->DebugDisplay.Remove(DebugType);
+		HUD->bShowDebugInfo = HUD->DebugDisplay.Num() > 0;
+	}
+	else
+	{
+		// 未开启：调用引擎的 ShowDebug，效果与手敲 showdebug AbilitySystem 完全相同
+		HUD->ShowDebug(DebugType);
+	}
 }
 
 void AAuraPlayerController::SetupInputComponent()
@@ -115,6 +137,9 @@ void AAuraPlayerController::SetupInputComponent()
 	// 绑定不同操作的回调函数
 	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
 	EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Look);
+	EnhancedInputComponent->BindAction(DebugAction1, ETriggerEvent::Triggered, this, &AAuraPlayerController::ToggleAbilitySystemDebug);
+	
+	
 }
 
 void AAuraPlayerController::Move(const FInputActionValue& Value)
