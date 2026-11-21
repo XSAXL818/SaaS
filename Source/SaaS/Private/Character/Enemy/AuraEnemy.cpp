@@ -32,7 +32,18 @@ void AAuraEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	InitAbilityActorInfo();
+}
+
+void AAuraEnemy::InitAbilityActorInfo()
+{
+
 	AbilitySystemComponent->InitAbilityActorInfo(this,this);
+	
+	// 调用GAS能力系统组件的set方法，设置相关回调
+	Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet();
+	
+	
 }
 
 void AAuraEnemy::HighlightActor()

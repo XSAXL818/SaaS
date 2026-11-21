@@ -28,6 +28,9 @@ enum class EEffectRemovalPolicy : uint8
 	
 };
 
+/**
+ * 
+ */
 UCLASS()
 class SAAS_API AAuraEffectActor : public AActor
 {
