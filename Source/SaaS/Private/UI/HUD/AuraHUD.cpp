@@ -16,6 +16,9 @@ UOverlayWidgetController* AAuraHUD::GetOverlayController(const FWidgetController
 		OverlayWidgetController->SetWidgetControllerParams(WCParams);
 		// 绑定AttributeSet中属性的值变化的广播
 		OverlayWidgetController->BindCallbacksToDependencies();
+		
+		// OverlayWidgetController->MessageWidgetRowDelegate.AddDynamic(this,&AAuraHUD::OnMessageWidgetRowDelegate);
+		
 	}
 	
 	return OverlayWidgetController;
@@ -46,3 +49,12 @@ void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySyst
 	
 	
 }
+
+// void AAuraHUD::OnMessageWidgetRowDelegate(FUIWidgetRow Message)
+// {
+// 	
+// 	FString Msg = Message.Message.ToString();
+// 	
+// 	GEngine->AddOnScreenDebugMessage(-1,10.f,FColor::Red,Msg);
+// 	
+// }

@@ -42,9 +42,20 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 	{
 		for (const FGameplayTag& Tag : TagContainer)
 		{
+			// 标签匹配规则，标签A是标签B的子集(包含B)，则返回true
+			FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message"));
+			if (Tag.MatchesTag(MessageTag))
+			{
+				
+				// GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Blue, Msg);
+				FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWodgetDataTable, Tag);
+				if (Row)
+				{
+					MessageWidgetRowDelegate.Broadcast(*Row);
+				}
+			}
 			
-			const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
-			GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Blue, Msg);
+			
 		}
 	}
 	);

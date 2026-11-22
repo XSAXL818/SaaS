@@ -6,6 +6,7 @@
 #include "GameFramework/HUD.h"
 #include "AuraHUD.generated.h"
 
+struct FUIWidgetRow;
 class UAttributeSet;
 class UAbilitySystemComponent;
 struct FWidgetControllerParams;
@@ -46,4 +47,8 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UOverlayWidgetController> OverlayWidgetControllerClass;
+	
+	//
+	// UFUNCTION()
+	// void OnMessageWidgetRowDelegate( FUIWidgetRow Message);
 };
