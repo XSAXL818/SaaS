@@ -9,6 +9,10 @@
 #include "AuraAbilitySystemComponent.generated.h"
 
 
+// AssertTags
+DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTags, const FGameplayTagContainer&);
+
+
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class SAAS_API UAuraAbilitySystemComponent : public UAbilitySystemComponent
 {
@@ -19,7 +23,8 @@ public:
 	
 	void AbilityActorInfoSet();
 	
-
+	FEffectAssetTags OnEffectAssetTags;
+	
 protected:
 	
 	
