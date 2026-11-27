@@ -14,6 +14,12 @@ DerivedDataCache/
 Intermediate/
 Saved/
 
+# ---------- AI 工作过程材料（不进仓库） ----------
+# 验收报告 / 截图 / 探针日志 / 代理临时脚本，统一归档在 Saved/AgentEvidence/ 下。
+# Saved/ 已在上面整体忽略，这里再兜一层，防止有人把证据目录建回仓库根。
+acceptance/
+AgentEvidence/
+
 # ---------- IDE / 编辑器配置 ----------
 .idea/
 .vs/
@@ -37,6 +43,26 @@ Content/*
 !Content/Code/
 !Content/FPS/
 !Content/DefendHome/
+
+# 软边界功能（自行实现）：只放行本功能用到的文件，合计约 700 KB
+# 注意顺序：先放行父目录，再忽略其全部子项，最后只放行需要的文件。
+!Content/FPSGame_AI/
+Content/FPSGame_AI/*
+!Content/FPSGame_AI/Materials/
+Content/FPSGame_AI/Materials/*
+!Content/FPSGame_AI/Materials/M_FPSAISoftBoundaryPP.uasset
+!Content/FPSGame_AI/Materials/MI_FPSAISoftBoundaryPP.uasset
+!Content/FPSGame_AI/SoftBoundary/
+
+# World Partition 的外部 Actor 存档（One File Per Actor）
+# 整个目录约 227 MB，绝大部分是商店/模板地图（Celebrations 151 MB、FPS 31 MB、Maps 31 MB），
+# 一律不纳入；只放行 FirstPersonMap 自己的 58 个 Actor（约 266 KB，
+# 少了这些，clone 下来的 FirstPersonMap 是个空关卡）。
+!Content/__ExternalActors__/
+Content/__ExternalActors__/*
+!Content/__ExternalActors__/FPSGame_AI/
+Content/__ExternalActors__/FPSGame_AI/*
+!Content/__ExternalActors__/FPSGame_AI/FirstPerson/
 
 # 自行搭建的测试关卡 TestMap（约 30 MB）默认不纳入；想纳入就取消下面 10 行注释
 # !Content/Maps/
